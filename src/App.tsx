@@ -1,3 +1,6 @@
+import { MenuItem } from './components/MenuItem';
+import { menuItems } from './data/db';
+
 export default function App() {
   return (
     <>
@@ -10,7 +13,11 @@ export default function App() {
       <main className="grid mx-auto mt-20 md:grid-cols-2 max-w-7xl">
         <div className="p-5">
           <h2 className="text-4xl font-black">Menu</h2>
-          <div className="space-y-3"></div>
+          <div className="space-y-3">
+            {menuItems.map((item) => (
+              <MenuItem key={item.id} item={item} />
+            ))}
+          </div>
         </div>
 
         <div>
