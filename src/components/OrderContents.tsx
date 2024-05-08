@@ -1,3 +1,4 @@
+import { formatCurrency } from '../helpers';
 import { OrderItemT } from '../types';
 
 type OrderContentsPropsT = {
@@ -15,12 +16,11 @@ export const OrderContents = ({ order }: OrderContentsPropsT) => {
         ) : (
           order.map((orderItem) => {
             return (
-              <div
-                key={orderItem.id}
-                className="grid justify-between grid-cols-2"
-              >
-                <p className="col-span-1">{orderItem.name}</p>
-                <p className="col-span-1 text-center">{orderItem.quantity}</p>
+              <div key={orderItem.id}>
+                <p>
+                  {orderItem.name} -{' '}
+                  {formatCurrency(orderItem.price, 'en-US', 'USD')}
+                </p>
               </div>
             );
           })
