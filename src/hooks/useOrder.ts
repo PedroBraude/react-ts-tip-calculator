@@ -26,5 +26,9 @@ export default function useOrder() {
       notify(`${newItem.name} agregado a la orden`, 'success');
     }
   };
-  return { addItem, order };
+
+  const removeItem = (itemID: MenuItemT['id']) => {
+    setOrder(order.filter((item: MenuItemT) => item.id !== itemID));
+  };
+  return { addItem, removeItem, order };
 }

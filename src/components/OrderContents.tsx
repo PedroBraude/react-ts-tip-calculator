@@ -3,9 +3,10 @@ import { OrderItemT } from '../types';
 
 type OrderContentsPropsT = {
   order: OrderItemT[];
+  removeItem: (itemID: number) => void;
 };
 
-export const OrderContents = ({ order }: OrderContentsPropsT) => {
+export const OrderContents = ({ order, removeItem }: OrderContentsPropsT) => {
   return (
     <div>
       <h2 className="text-4xl font-black">Consumo</h2>
@@ -29,7 +30,10 @@ export const OrderContents = ({ order }: OrderContentsPropsT) => {
                     {formatCurrency(orderItem.price * orderItem.quantity)}
                   </p>
                 </div>
-                <button className="w-8 h-8 font-black text-white bg-red-600 rounded-full">
+                <button
+                  className="w-8 h-8 font-black text-white bg-red-600 rounded-full"
+                  onClick={() => removeItem(orderItem.id)}
+                >
                   X
                 </button>
               </div>

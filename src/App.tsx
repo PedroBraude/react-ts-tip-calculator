@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
-  const { addItem, order } = useOrder();
+  const { addItem, removeItem, order } = useOrder();
   return (
     <>
       <ToastContainer position="top-right" closeOnClick theme="light" />
@@ -27,7 +27,7 @@ export default function App() {
         </div>
 
         <div className="p-5 space-y-10 border border-dashed border-slate-300 rounder-lg">
-          <OrderContents order={order} />
+          <OrderContents order={order} removeItem={removeItem} />
         </div>
       </main>
     </>
