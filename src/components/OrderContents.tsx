@@ -1,5 +1,6 @@
 import { formatCurrency } from '../helpers';
 import { OrderItemT } from '../types';
+import { formatCurrency } from '../helpers/index';
 
 type OrderContentsPropsT = {
   order: OrderItemT[];
@@ -17,9 +18,12 @@ export const OrderContents = ({ order }: OrderContentsPropsT) => {
           order.map((orderItem) => {
             return (
               <div key={orderItem.id}>
-                <p>
-                  {orderItem.name} -{' '}
-                  {formatCurrency(orderItem.price, 'en-US', 'USD')}
+                <p className="text-lg">
+                  {orderItem.name} - {formatCurrency(orderItem.price)}
+                </p>
+                <p className="font-black">
+                  Cantidad: {orderItem.quantity} -{' '}
+                  {formatCurrency(orderItem.price * orderItem.quantity)}
                 </p>
               </div>
             );
