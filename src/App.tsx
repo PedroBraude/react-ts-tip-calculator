@@ -1,11 +1,12 @@
 import { MenuItem } from './components/MenuItem';
+import { OrderContents } from './components/OrderContents';
 import { menuItems } from './data/db';
 import useOrder from './hooks/useOrder';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
-  const { addItem } = useOrder();
+  const { addItem, order } = useOrder();
   return (
     <>
       <ToastContainer position="top-right" closeOnClick theme="light" />
@@ -25,8 +26,8 @@ export default function App() {
           </div>
         </div>
 
-        <div>
-          <h2 className="text-4xl font-black">Consumo</h2>
+        <div className="p-5 space-y-10 border border-dashed border-slate-300 rounder-lg">
+          <OrderContents order={order} />
         </div>
       </main>
     </>

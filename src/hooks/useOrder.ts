@@ -26,5 +26,5 @@ export default function useOrder() {
       notify(`${newItem.name} agregado a la orden`, 'success');
     }
   };
-  return { addItem };
+  return { addItem, order };
 }
