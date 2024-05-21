@@ -1,12 +1,14 @@
 import { MenuItem } from './components/MenuItem';
 import { OrderContents } from './components/OrderContents';
+import { OrderTotals } from './components/OrderTotals';
+import { TipPercentageForm } from './components/tipPercentageForm';
 import { menuItems } from './data/db';
 import useOrder from './hooks/useOrder';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
-  const { addItem, removeItem, order } = useOrder();
+  const { addItem, removeItem, order, tip, setTip, placeOrder } = useOrder();
   return (
     <>
       <ToastContainer position="top-right" closeOnClick theme="light" />
@@ -27,7 +29,15 @@ export default function App() {
         </div>
 
         <div className="p-5 space-y-10 border border-dashed border-slate-300 rounder-lg">
-          <OrderContents order={order} removeItem={removeItem} />
+          {order.length > 0 ? (
+            <>
+              <OrderContents order={order} removeItem={removeItem} />
+              <TipPercentageForm setTip={setTip} />
+              <OrderTotals order={order} tip={tip} placeOrder={placeOrder} />
+            </>
+          ) : (
+            <p className="text-center">La orden está vacía</p>
+          )}
         </div>
       </main>
     </>

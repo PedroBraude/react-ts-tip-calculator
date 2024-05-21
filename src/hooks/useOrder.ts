@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 
 export default function useOrder() {
   const [order, setOrder] = useState<OrderItemT[]>([]); // <OrderItemT[]> => generics types
+  const [tip, setTip] = useState(0);
+
   const notify = (message: string, type: 'warning' | 'success') =>
     toast(message, {
       type: type,
@@ -30,5 +32,9 @@ export default function useOrder() {
   const removeItem = (itemID: MenuItemT['id']) => {
     setOrder(order.filter((item: MenuItemT) => item.id !== itemID));
   };
-  return { addItem, removeItem, order };
+
+  const placeOrder = () => {
+    console.log('placeOrder');
+  };
+  return { addItem, removeItem, order, tip, setTip, placeOrder };
 }
